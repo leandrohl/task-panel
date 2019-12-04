@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task Panel Chernobyl</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+    </head>
+    <body>
+        <header id="cabecalho">
+            <div class="titulo-panel">
+                <h1>Task Panel</h1>
+            </div>
+            <div class="botao-new">
+                <div>
+                     <input type="button" id="buttontask" value="New Task" onclick="abrirjanela()"> 
+                </div> 
+            </div>
+        </header>
+        <div id="modalnewtask" class="modal-container ">
+                <div class="modal">
+                    <div class="titulo-newtask">
+                        <h3 class="titulo">New Task</h3>
+                    </div>
+                    <form class="form-newtask" id="form-newtask">
+                        <label class="label-tit">Task</label> <br>
+                        <input type="text" id="nome-tarefa" class="nometarefa"> <br> 
+                        <label class="label-tit"> Description</label> <br>
+                        <textarea cols="30" rows="5" class="descricao" id="descricao-tarefa"></textarea> <br>
+                    </form>
+                </div>
+        </div>
+        <div id="barradeprogresso">
+            <div id="barra-fazer"></div>
+            <div id="barra-progresso"></div>
+            <div id="barra-revisao"></div>
+            <div id="barra-concluido"></div>
+        </div>
+        <main id="conteudo">
+            <section class="quadro-tarefas">
+                <div class="topo-quadro">
+                    Fazer
+                </div>
+                <div id="tarefa-fazer">
+                   
+                </div>
+                
+            </section>
+            <section class="quadro-tarefas">
+                <div class="topo-quadro">
+                    Em progresso
+                </div>
+                <div id="tarefa-progresso">
+                   
+                </div>
+            </section>
+            <section class="quadro-tarefas">
+                <div class="topo-quadro">
+                    Revisão
+                </div>
+                <div id="tarefa-revisao">
+
+                </div>
+            </section>
+            <section class="quadro-tarefas">
+                <div class="topo-quadro">
+                    Concluido
+                </div>
+                <div id="tarefa-final">
+                    
+                </div>
+            </section>
+        </main>
+
+        <script>
+        let janela = document.getElementById('modalnewtask')
+        let textarea = document.getElementById('descricao-tarefa')
+        let input = document.getElementById('nome-tarefa')
+        let barrafazer = 0, barraprogresso = 0, barrarevisao = 0, barrafinal = 0
+        function abrirjanela(){
+            janela.classList.add('mostrar')
+        }
+        function eventoenviar(event){
+                //event.preventDefault()
+                let tecla = event.keyCode
+                console.log(event)
+                if(tecla == 13 && event.altKey) { 
+                     janela.classList.remove('mostrar')
+                     criartarefa();
+                 } else if(tecla == 27){
+                     janela.classList.remove('mostrar')
+                     apagarconteudo()
+                 }
+         }
+
+        textarea.addEventListener('keydown', eventoenviar);  
+        input.addEventListener('keydown', eventoenviar);
+        function apagarconteudo(){
+            let nometarefa = document.getElementById('nome-tarefa')
+            let descricaotarefa = document.getElementById('descricao-tarefa')
+            nometarefa.value = ''
+            descricaotarefa.value = ''
+        }
+        function criartarefa() {
+            let novadiv = document.createElement('div');
+            novadiv.setAttribute('class', 'tarefa')
+            let localinsercao = document.getElementById('tarefa-fazer')
+            localinsercao.appendChild(novadiv);
+            moverconteudoPopUp(novadiv);
+        }
+        function moverconteudoPopUp(localinsercao){
+            let nometarefa = document.getElementById('nome-tarefa').value
+            let descricaotarefa = document.getElementById('descricao-tarefa').value
+            let novadiv = document.createElement('div')
+            let novadiv2 = document.createElement('div')
+            novadiv.setAttribute('class', 'nome')
+            novadiv2.setAttribute('class' , 'descricao')
+            novadiv.appendChild(document.createTextNode(nometarefa))
+            novadiv2.appendChild(document.createTextNode(descricaotarefa))
+            localinsercao.appendChild(novadiv)
+            localinsercao.appendChild(novadiv2)
+            barrafazer++
+            atualizarBarraProgresso();
+            apagarconteudo()
+        }
+        function atualizarBarraProgresso(){
+            let totalelemento = barrafazer+barraprogresso+barrarevisao+barrafinal
+            let largura = (100.0 / totalelemento) * barrafazer
+            document.getElementById('barra-fazer').style.width = largura + "%"
+            largura = (100.0 / totalelemento) * barraprogresso
+            document.getElementById('barra-progresso').style.width = largura + "%"
+            largura = (100.0 / totalelemento) * barrarevisao
+            document.getElementById('barra-revisao').style.width = largura + "%"
+            largura = (100.0 / totalelemento) * barrafinal
+            document.getElementById('barra-concluido').style.width = largura + "%"
+        }
+        let blocotarefa =  document.querySelector('.quadro-tarefas')
+        blocotarefa.addEventListener('mouseover', function(){
+            let caixatarefa = document.querySelectorAll(".tarefa"), i=0
+            for(i=0; i<caixatarefa.length; i++) {
+		        caixatarefa[i].onclick = function(e) {
+                    let localinsercao= this.parentNode
+                    if(localinsercao == document.querySelector('#tarefa-fazer')){
+                        barrafazer--
+                        barraprogresso++
+                        atualizarBarraProgresso();
+                        localinsercao = document.querySelector('#tarefa-progresso')
+                        localinsercao.appendChild(this)
+                    }
+                    else if(localinsercao == document.querySelector('#tarefa-progresso')){
+                        barraprogresso--
+                        barrarevisao++
+                        atualizarBarraProgresso();
+                        localinsercao = document.querySelector('#tarefa-revisao')
+                        localinsercao.appendChild(this)
+                    }
+                    else if(localinsercao == document.querySelector('#tarefa-revisao')){
+                        barrarevisao--
+                        barrafinal++
+                        atualizarBarraProgresso();
+                        localinsercao = document.querySelector('#tarefa-final')
+                        localinsercao.appendChild(this)
+                    }
+                }
+            }
+        })
+        </script>
+    </body>
+</html>

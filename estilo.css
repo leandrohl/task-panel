@@ -1,0 +1,220 @@
+body {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+* {
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+}
+
+#cabecalho {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(46, 45, 45);
+    display: flex;
+    flex-direction: row;
+}
+
+header .titulo-panel{
+    width: 88%;
+    margin-top: 0.6%;
+}
+
+header .titulo-panel h1{
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: "Charlie Display",sans-serif;
+}
+
+/* CONFIGURAÇÃO DO BOTAO CRIAR NOVA TAREFA */
+header .botao-new {
+    width: 10%;
+    position: relative;
+}
+header .botao-new > div{
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    height: 50%;
+    border: #fff solid 1px;
+    color: #fff;
+    text-align: center;
+    font: normal 400 90% "Charlie Display",sans-serif;
+}
+
+header .botao-new input{
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+#barradeprogresso {
+    width: 100%;
+    height: 13px;
+    display: flex;
+    flex-direction: row;
+}
+#barradeprogresso #barra-fazer {
+    height: 100%;
+    background-color: green;
+}
+#barradeprogresso #barra-progresso {
+    height: 100%;
+    background-color: #b60000;
+}
+#barradeprogresso #barra-revisao{
+    height: 100%;
+    background-color: purple;
+}
+#barradeprogresso #barra-concluido{
+    height: 100%;
+    background-color: rgb(0, 103, 187)
+}
+/* JANELA PARA CRIAR NOVA TAREFA */
+    .modal-container{
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,.5);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 2000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-container.mostrar{
+        display: flex;
+    }
+
+    @keyframes modal {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -60px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    .mostrar .modal{
+        animation: modal .3s;
+    }
+    .modal {
+        background: #fff;
+        width: 20%;
+        height: 210px;
+        min-width: 300px;
+        box-shadow: 0 0 10px 1px rgba(0,0,0,.6);
+        position: relative;
+    }
+    .modal .titulo-newtask{
+        width: 100%;
+        height: 30px;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+    }
+    .modal h3{
+        margin: 0;
+        padding-left: 5%;
+        color: rgb(209, 209, 209);
+        font: normal 400 90% "Charlie Display",sans-serif;
+    }
+
+    .modal .form-newtask{
+        position: absolute;
+        left: 6%;
+        top: 40px;
+    }
+    .form-newtask .nometarefa{
+        margin-bottom: 5%;
+    }
+    .form-newtask .descricao{
+        height: 30%;
+    }
+    .form-newtask .label-tit{
+        font: normal 400 14px "Charlie Display",sans-serif;
+    }
+
+/* CONTEUDO DA PAGINA DIVIDIDO EM QUATRO */
+
+#conteudo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+main .quadro-tarefas{
+    width: 22%;
+    height: 420px;
+    color:#000;
+    margin: 3% 1.5% 0 0;
+    border-radius: 2px;
+    border:1px solid rgba(0,0,0,.3);
+}
+main .quadro-tarefas:first-child{
+    margin-left: 4%;
+}
+main .topo-quadro {
+    height: 33px;
+    width: 100%;
+    background-color: rgb(46, 45, 45);
+}
+
+main .topo-quadro{
+    color:rgb(236, 236, 236);
+    font: normal 400 90% "Charlie Display",sans-serif;
+    line-height: 1.2em;
+    padding: 3% 0 0 3%;
+}
+
+main .topo-quadro + div .tarefa {
+    width: 93%;
+    background-color: #fff;
+    height: 60px;
+    margin: 3%;
+    margin-top: 6%;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    border:1.5px solid rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+main .topo-quadro + div .tarefa:hover{
+    background: rgb(247, 247, 247);
+    transition: 0.5s;
+}
+
+main .tarefa .nome {
+    height: 50%;
+    width: 90%;
+    margin: 2% 0 0 2.5%;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main .tarefa .descricao {
+    height: 50%;
+    width: 90%;
+    margin: 0 0 0 2.5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+main .tarefa .nome{
+    font-weight: bold;
+}
+
+main .topo-quadro + div {
+    height: 380px;
+    overflow: auto; 
+}
