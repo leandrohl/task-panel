@@ -1,2 +1,3 @@
 # TaskPanel
-Uma aplicação WEB que tem com função gerenciamento de projetos.  Disciplina Desenvolvimento Web
+Aplicação WEB básica de gerenciamento de projeto, com o objetivo de organizar atividades dentro de um projeto.
+Elaborado na matéria de Desenvolvimento WEB com JavaScript.
