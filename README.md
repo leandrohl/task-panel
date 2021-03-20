@@ -9,7 +9,7 @@
 
 
 ##  :notebook_with_decorative_cover: Sobre
-Task Panel é um site básico de gerenciamento de projeto, com o objetivo de organizar tarefas dentro de um projeto. Ele foi desenvolvido durante a disciplina Desenvolvimento WEB com JavaScript.
+Task Panel é um site básico de gerenciamento de projeto, com o objetivo de organizar tarefas dentro de um projeto. Ele foi desenvolvido na disciplina Desenvolvimento WEB com JavaScript.
 <br />
 <br />
 Realizado pelos seguintes integrantes:
