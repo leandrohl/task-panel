@@ -2,7 +2,7 @@
   Task Panel
 <br />  
   <br /> 
-  <img src="assets/principal.JPG" alt="move-it" width="100%">
+  <img src="assets/principal.JPG" alt="task panel" width="100%">
 <br />
 </h1> 
 <p align="center"> <strong>Site de gerenciamento de projeto e tarefas.</strong> </p>
@@ -10,7 +10,8 @@
 
 ##  :notebook_with_decorative_cover: Sobre
 Task Panel é um site básico de gerenciamento de projeto, com o objetivo de organizar tarefas dentro de um projeto que foi realizado na disciplina Desenvolvimento WEB com JavaScript.
-Realizado elos seguintes integrantes:
+<br />
+Realizado pelos seguintes integrantes:
 - **Leandro Henrique Lima e Silva** 
 - **Gabriela Maria Sinastre** 
 <br />
